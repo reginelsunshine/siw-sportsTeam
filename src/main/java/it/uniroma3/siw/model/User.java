@@ -10,59 +10,59 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "surname")  
-	private String surname;
-	
-	@Column(name = "email")  
-	private String email;
 
-	public User() {
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	public User(Integer id, String name, String surname, String email) {
-		this.id = id;
-		this.name = name;
-		this.surname = surname;
-		this.email = email;
-	}
+    @Column(name = "name")
+    private String name;
 
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "surname")  
+    private String surname;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "email")  
+    private String email;
 
-	public String getName() {
-		return name;
-	}
+    public User() {
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public User(Long id, String name, String surname, String email) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

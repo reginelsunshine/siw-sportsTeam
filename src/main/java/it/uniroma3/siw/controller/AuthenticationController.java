@@ -32,7 +32,7 @@ public class AuthenticationController {
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
-		return "formRegisterUser";
+		return "formRegister";
 	}
 	
 	@GetMapping(value = "/login") 
@@ -82,6 +82,6 @@ public class AuthenticationController {
             model.addAttribute("user", user);
             return "registrationSuccessful";
         }
-        return "formRegisterUser";
+        return "formRegister";
     }
 }
