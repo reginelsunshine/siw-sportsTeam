@@ -14,4 +14,6 @@ public interface TeamRepository extends CrudRepository<Team, Long> {
     List<Team> findByFoundationYear(int foundationYear);
 
     List<Team> findByPresidentId(Long presidentId);
+    
+    List<Team> findAll();
 }

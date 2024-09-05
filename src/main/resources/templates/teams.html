@@ -1,42 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Elenco Squadre</title>
-    <link rel="stylesheet" href="/css/stile.css" />
+    <title>Teams</title>
 </head>
 <body>
-    <header>
-        <h1>Elenco Squadre</h1>
-    </header>
-
-    <div>
-        <a href="/">Home</a> |
-        <a href="/players">Gestisci Giocatori</a>
-    </div>
-
-    <div>
-        <h2>Squadre</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Anno di Fondazione</th>
-                    <th>Indirizzo Sede</th>
-                    <th>Presidente</th>
-                    <th>Dettagli</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="team : ${teams}">
-                    <td th:text="${team.name}"></td>
-                    <td th:text="${team.yearOfEstablishment}"></td>
-                    <td th:text="${team.address}"></td>
-                    <td th:text="${team.president.name + ' ' + team.president.surname}"></td>
-                    <td><a th:href="@{/teams/{id}(id=${team.id})}">Vedi Dettagli</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="/teams/new">Aggiungi Squadra</a>
-    </div>
+    <h1>Teams</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Foundation Year</th>
+                <th>Address</th>
+                <th>President ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="team : ${teams}">
+                <td th:text="${team.id}">ID</td>
+                <td th:text="${team.name}">Name</td>
+                <td th:text="${team.foundationYear}">Foundation Year</td>
+                <td th:text="${team.address}">Address</td>
+                <td th:text="${team.president.id}">President ID</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

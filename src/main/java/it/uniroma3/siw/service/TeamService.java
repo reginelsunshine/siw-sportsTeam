@@ -14,11 +14,11 @@ public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
 
-    public List<Team> getAllTeams() {
-        return (List<Team>) teamRepository.findAll();
+    public List<Team> findAllTeams() {
+        return teamRepository.findAll();
     }
 
-    public Team getTeamById(Long id) {
+    public Team findTeamById(Long id) {
         Optional<Team> result = teamRepository.findById(id);
         return result.orElse(null);
     }
@@ -42,7 +42,7 @@ public class TeamService {
         }
     }
 
-    public void deleteTeam(Long id) {
+    public void deleteTeamById(Long id) {
         teamRepository.deleteById(id);
     }
 }
