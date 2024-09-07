@@ -44,12 +44,12 @@ public class TeamController {
     }
 
     // Mostra i dettagli di un team specifico
-    @GetMapping("/{id}")
+    @GetMapping("/team/{id}")
     public String getTeamDetails(@PathVariable("id") Long id, Model model) {
         Team team = teamService.findTeamById(id);
         if (team != null) {
             model.addAttribute("team", team);
-            return "teamDetails"; // Nome della vista Thymeleaf per i dettagli del team
+            return "team"; // Nome della vista Thymeleaf per i dettagli del team
         } else {
             return "redirect:/teams"; // Reindirizza alla lista se il team non è trovato
         }

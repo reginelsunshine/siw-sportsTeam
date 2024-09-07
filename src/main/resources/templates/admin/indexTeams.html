@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Elenco Squadre</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+    <header>
+        <h1>Elenco delle Squadre</h1>
+    </header>
+
+    <div>
+        <a href="/">Home</a> |
+        <a href="/teams/new">Aggiungi Nuova Squadra</a>
+    </div>
+
+    <div>
+        <h2>Lista Squadre</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Anno di Fondazione</th>
+                    <th>Indirizzo</th>
+                    <th>Presidente</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="team : ${teams}">
+                    <td th:text="${team.id}">ID</td>
+                    <td th:text="${team.name}">Nome</td>
+                    <td th:text="${team.yearOfEstablishment}">Anno di Fondazione</td>
+                    <td th:text="${team.address}">Indirizzo</td>
+                    <td th:text="${team.president.name + ' ' + team.president.surname}">Presidente</td>
+                    <td>
+                        <a th:href="@{/teams/{id}(id=${team.id})}" title="Dettagli Squadra">Dettagli</a> |
+                        <a th:href="@{/teams/{id}/edit(id=${team.id})}" title="Modifica Squadra">Modifica</a> |
+                        <a th:href="@{/teams/{id}/delete(id=${team.id})}" 
+                           th:if="${#authorization.hasRole('ADMIN_ROLE')}"
+                           title="Cancella Squadra" 
+                           onclick="return confirm('Sei sicuro di voler cancellare questa squadra?');">Cancella</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

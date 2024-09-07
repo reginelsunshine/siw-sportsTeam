@@ -1,31 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Dettagli Squadra</title>
+    <title th:text="${team.name} + ' - Dettagli'">Dettagli Team</title>
     <link rel="stylesheet" href="/css/stile.css" />
 </head>
 <body>
-    <header>
-        <h1>Dettagli Squadra</h1>
-    </header>
-
-    <div>
-        <a href="/">Home</a> |
-        <a href="/teams">Elenco Squadre</a>
-    </div>
-
-    <div>
-        <h2 th:text="${team.name}">Nome Squadra</h2>
-        <p>Anno di Fondazione: <span th:text="${team.yearOfEstablishment}"></span></p>
-        <p>Indirizzo Sede: <span th:text="${team.address}"></span></p>
-        <p>Presidente: <span th:text="${team.president.name + ' ' + team.president.surname}"></span></p>
-        <h3>Giocatori</h3>
-        <ul>
-            <li th:each="player : ${team.players}">
-                <span th:text="${player.name + ' ' + player.surname}"></span>
-            </li>
-        </ul>
-        <a href="/teams">Torna all'elenco squadre</a>
-    </div>
+    <h1 th:text="${team.name}">Nome del Team</h1>
+    <p>Anno di Fondazione: <span th:text="${team.foundationYear}">Anno di Fondazione</span></p>
+    <p>Indirizzo: <span th:text="${team.address}">Indirizzo</span></p>
+    <p>ID Presidente: <span th:text="${team.president.id}">ID Presidente</span></p>
+    <a th:href="@{/teams}">Torna alla lista delle squadre</a>
 </body>
 </html>
