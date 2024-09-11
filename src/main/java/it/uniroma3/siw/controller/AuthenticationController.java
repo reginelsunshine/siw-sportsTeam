@@ -1,8 +1,5 @@
 package it.uniroma3.siw.controller;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,27 +34,25 @@ public class AuthenticationController {
     @Autowired
 	private UserService userService;
 
-    
-	
 	@GetMapping(value = "/register") 
-	public String showRegisterForm (Model model) {
+	public String showRegisterForm(Model model) {
 		model.addAttribute("credentials", new Credentials());
 		model.addAttribute("user", new User());
 		return "formRegister";
 	}
 	
 	@GetMapping(value = "/login") 
-	public String showLoginForm (Model model) {
+	public String showLoginForm(Model model) {
 		return "formLogin";
 	}
 	
-	@GetMapping(value="/admin/indexAdmin") 
-	public String showIndexAdmin (Model model) {
+	@GetMapping(value = "/admin/indexAdmin") 
+	public String showIndexAdmin(Model model) {
 		return "indexAdmin";
 	}
 	
-	@GetMapping(value="/index") 
-	public String showIndex (Model model) {
+	@GetMapping(value = "/index") 
+	public String showIndex(Model model) {
 		return "index";
 	}
 
@@ -66,29 +61,33 @@ public class AuthenticationController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication instanceof AnonymousAuthenticationToken) {
 	        return "index.html";
-		}
-		else {	
-			Authentication userDetails =  SecurityContextHolder.getContext().getAuthentication();
+		} else {	
+			Authentication userDetails = SecurityContextHolder.getContext().getAuthentication();
 			String loggedUser = userDetails.getName();
 			Credentials credentials = credentialsService.getCredentials(loggedUser);
+			
 			if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
 				return "admin/indexAdmin.html";
+			} else if (credentials.getRole().equals("PRESIDENT")) {
+				return "president/indexPresident.html";
 			}
 		}
         return "index.html";
 	}
-		
-	
 
     @GetMapping(value = "/success")
     public String defaultAfterLogin(Model model) {
-        
-    	Authentication userDetails =  SecurityContextHolder.getContext().getAuthentication();
+    	Authentication userDetails = SecurityContextHolder.getContext().getAuthentication();
 		String loggedUser = userDetails.getName();
     	Credentials credentials = credentialsService.getCredentials(loggedUser);
-    	if (credentials != null && credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/indexAdmin.html";
-        }
+    	
+    	if (credentials != null) {
+    		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+                return "admin/indexAdmin.html";
+            } else if (credentials.getRole().equals("PRESIDENT")) {
+                return "president/indexPresident.html";
+            }
+    	}
         return "index.html";
     }
      
@@ -102,8 +101,7 @@ public class AuthenticationController {
     	this.userValidator.validate(user, userBindingResult);
         this.credentialsValidator.validate(credentials, credentialsBindingResult);
 
-    	
-        if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
+        if (!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
             this.userService.saveUser(user);
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
@@ -112,7 +110,4 @@ public class AuthenticationController {
         }
         return "formRegister";
     }
-
 }
-
-

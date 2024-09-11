@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import it.uniroma3.siw.model.Player;
+import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,10 @@ public class PlayerService {
 
     public void deletePlayer(Long id) {
         playerRepository.deleteById(id);
+    }
+    
+
+    public List<Player> findPlayersByTeam(Team team) {
+        return playerRepository.findByTeam(team);
     }
 }

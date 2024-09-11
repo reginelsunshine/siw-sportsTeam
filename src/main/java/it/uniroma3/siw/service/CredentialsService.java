@@ -1,6 +1,5 @@
 package it.uniroma3.siw.service;
 
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +26,17 @@ public class CredentialsService {
     }
 
     @Transactional
-    public Credentials getCredentials(String username) {
-        Optional<Credentials> result = this.credentialsRepository.findByUsername(username);
-        return result.orElse(null);
-    }
-
-    @Transactional
     public Credentials saveCredentials(Credentials credentials) {
         credentials.setRole(Credentials.DEFAULT_ROLE);
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
+    }
+    
+    public Credentials getCredentials(String username) {
+        // Questo metodo ora restituisce Optional<Credentials> 
+        Optional<Credentials> optionalCredentials = credentialsRepository.findByUsername(username);
+        
+        // Estrai l'oggetto Credentials dall'Optional
+        return optionalCredentials.orElse(null);
     }
 }

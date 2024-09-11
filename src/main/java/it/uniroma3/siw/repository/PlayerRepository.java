@@ -1,6 +1,8 @@
 package it.uniroma3.siw.repository;
 
 import it.uniroma3.siw.model.Player;
+import it.uniroma3.siw.model.Team;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +18,6 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
     List<Player> findByRole(String role);
 
     List<Player> findByTeamId(Long teamId);
+    
+    List<Player> findByTeam(Team team);
 }

@@ -1,56 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>SiwSportsTeam - Registrazione</title>
-    <link rel="stylesheet" href="/css/stile.css" />
+    <meta charset="UTF-8">
+    <title>Registrazione</title>
+    <link rel="stylesheet" type="text/css" href="/css/stile.css">
 </head>
 <body>
-    <header>
-        <div th:if="${userDetails}">
-            <span th:text="${userDetails.username}"></span>
-            <a href="/logout">Logout</a>
+    <h2>Registrazione Presidente</h2>
+    <form th:action="@{/register}" method="post" th:object="${president}">
+        <div>
+            <label for="fiscalCode">Codice Fiscale:</label>
+            <input type="text" id="fiscalCode" th:field="*{fiscalCode}" placeholder="Codice Fiscale" required />
         </div>
-        <div th:unless="${user}">
-            <a href="/login">Login</a>
+
+        <div>
+            <label for="presidentCode">Codice Presidente:</label>
+            <input type="text" id="presidentCode" name="presidentCode" placeholder="Codice Presidente" required />
         </div>
-    </header>
 
-    <div>
-        <a href="/"><img src="/images/logo-siw.png" width="20%" /></a>
-    </div>
+        <div>
+            <button type="submit">Registrati</button>
+        </div>
 
-    <h1>Registrazione nuovo Presidente</h1>
-
- <form th:action="@{/register}" method="POST">
-    <div>
-        <label for="name">Nome</label>
-        <input id="name" type="text" placeholder="Nome" required th:field="*{user.name}" />
-        <span th:if="${#fields.hasErrors('user.name')}" th:errors="${#fields.errors('user.name')}" style="color:red"></span>
-    </div>
-    <div>
-        <label for="surname">Cognome</label>
-        <input id="surname" type="text" placeholder="Cognome" required th:field="*{user.surname}" />
-        <span th:if="${#fields.hasErrors('user.surname')}" th:errors="${#fields.errors('user.surname')}" style="color:red"></span>
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" placeholder="Email" required th:field="*{user.email}" />
-        <span th:if="${#fields.hasErrors('user.email')}" th:errors="${#fields.errors('user.email')}" style="color:red"></span>
-    </div>
-    <div>
-        <label for="username">Username</label>
-        <input id="username" type="text" placeholder="Username" required th:field="*{credentials.username}" />
-        <span th:if="${#fields.hasErrors('credentials.username')}" th:errors="${#fields.errors('credentials.username')}" style="color:red"></span>
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Password" required th:field="*{credentials.password}" />
-        <span th:if="${#fields.hasErrors('credentials.password')}" th:errors="${#fields.errors('credentials.password')}" style="color:red"></span>
-    </div>
-    <div>
-        <button type="submit">Registra</button>
-    </div>
-</form>
-
+        <div th:if="${error != null}">
+            <p th:text="${error}" style="color: red;"></p>
+        </div>
+    </form>
 </body>
 </html>

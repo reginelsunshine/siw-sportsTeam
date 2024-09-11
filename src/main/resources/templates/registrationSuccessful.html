@@ -1,38 +1,14 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>SiwBook - Registrazione conclusa</title>
-    <link rel="stylesheet" href="/css/stile.css" />
-    <meta http-equiv="refresh" content="3; URL='/'" />
+    <meta charset="UTF-8">
+    <title>Registrazione Completata</title>
+    <link rel="stylesheet" type="text/css" href="/css/stile.css"> <!-- Include il tuo CSS -->
 </head>
-
 <body>
-    <header>
-        <div th:if="${userDetails}">
-            <span th:text="${userDetails.username}"></span>
-            <a href="/logout">Logout</a>
-        </div>
-        <div th:unless="${user}">
-            <a href="/login">Login</a>
-        </div>
-    </header>
-
-    <div>
-        <a href="/"><img src="/images/logo-siw.png" width="20%"/></a>
-    </div>
-    <h1>Congratulazioni, ti sei registrato!</h1>
-    <div>
-        <span>Nome: </span>
-        <span th:text="${user.name}"></span>
-    </div>
-    <div>
-        <span>Cognome: </span>
-        <span th:text="${user.surname}"></span>
-    </div>
-    <div>
-        <span>Email: </span>
-        <span th:text="${user.email}"></span>
-    </div>
+    <h3>Registrazione Completata</h3>
+    <p th:text="${message}" style="color: green;"></p>
+    <a href="/" th:href="@{/}">Torna alla Home</a>
+    <a href="/login" th:href="@{/login}">Accedi</a>
 </body>
 </html>

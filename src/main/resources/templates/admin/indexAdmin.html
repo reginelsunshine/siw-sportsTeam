@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>SiwSportsTeam - Homepage</title>
+    <title>SiwSportsTeam - Gestione Squadre</title>
     <link rel="stylesheet" href="/css/stile.css" />
 </head>
-
 <body>
     <header>
-        <div th:if="${userDetails}">
-            <span th:text="${userDetails.username}"></span>
-            <a href="/logout">Logout</a>
-        </div>
-        <div th:unless="${userDetails}">
-            <a href="/login">Login</a>
-        </div>
-    </header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+	<div><a href="/"><img src="/images/logo-siw.png" width="20%" /></a></div>
 
     <div>
-        <a href="/"><img src="/images/logo-siw.png" width="20%" alt="Logo"/></a>
+        <a href="/admin/indexTeams">Operazioni sulle squadre</a>
     </div>
-    <h1>Consulta l'archivio</h1>
-    <div>
-        <a href="/teams">Elenco Squadre</a>
-    </div>
-    
-    <h1>Operazioni per amministratore</h1>
-    <div>
-        <a href="/admin/indexBook">Operazioni sulle squadre</a>
-    </div>
-  
 </body>
-
 </html>

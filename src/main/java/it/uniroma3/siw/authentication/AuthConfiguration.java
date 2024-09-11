@@ -42,36 +42,28 @@ public class AuthConfiguration {
     }
 
     @Bean
-    protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-            .csrf().and().cors().disable()
+    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
             .authorizeHttpRequests()
-                // Permetti l'accesso alle pagine pubbliche
-                .requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/css/**", "/images/**", "favicon.ico").permitAll()
+                .requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/css/**", "/images/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
-                // Permetti solo agli utenti con il ruolo ADMIN di accedere a queste pagine
-                .requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority("ADMIN_ROLE")
-                .requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority("ADMIN_ROLE")
-                // Permetti solo ai presidenti di accedere agli endpoint di gestione giocatori
-                .requestMatchers(HttpMethod.GET, "/teams/{id}/addPlayer", "/teams/{id}/removePlayer").hasAuthority("PRESIDENT_ROLE")
-                .requestMatchers(HttpMethod.POST, "/teams/{id}/addPlayer", "/teams/{id}/removePlayer").hasAuthority("PRESIDENT_ROLE")
-                // Permetti a tutti gli utenti autenticati di accedere alle altre pagine
+                .requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
-                // Configura la pagina di login
-                .and().formLogin()
+            .and()
+                .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .defaultSuccessUrl("/success", true)
                 .failureUrl("/login?error=true")
-                // Configura la pagina di logout
-                .and()
+            .and()
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .clearAuthentication(true).permitAll();
-        return httpSecurity.build();
+                .permitAll();
+        return http.build();
     }
 }

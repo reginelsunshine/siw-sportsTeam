@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Squadra</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+    <header>
+        <h1>Modifica Squadra</h1>
+    </header>
+
+    <div>
+        <form action="/teams/${team.id}" method="post" th:object="${team}">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" th:field="*{name}" required />
+            <br/>
+            <label for="foundationYear">Anno di Fondazione:</label>
+            <input type="number" id="foundationYear" name="foundationYear" th:field="*{foundationYear}" required />
+            <br/>
+            <label for="address">Indirizzo:</label>
+            <input type="text" id="address" name="address" th:field="*{address}" required />
+            <br/>
+            <label for="president">Presidente:</label>
+            <input type="text" id="president" name="president" th:field="*{president.firstname}" placeholder="Nome Presidente" required />
+            <input type="text" id="presidentSurname" name="presidentSurname" th:field="*{president.lastname}" placeholder="Cognome Presidente" required />
+            <br/>
+            <button type="submit">Aggiorna Squadra</button>
+        </form>
+    </div>
+</body>
+</html>

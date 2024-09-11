@@ -15,11 +15,16 @@ public class President {
     private String fiscalCode;
     private LocalDate dateOfBirth;
     private String placeOfBirth;
+    private String presidentCode;
 
+    
+    private String passwordHash;
+    
+    
     @OneToOne(mappedBy = "president")
     private Team team;
 
-    // Getters and Setters
+    // Getters e Setters
 
     public Long getId() {
         return id;
@@ -69,11 +74,27 @@ public class President {
         this.placeOfBirth = placeOfBirth;
     }
 
+    public String getPresidentCode() {
+        return presidentCode;
+    }
+
+    public void setPresidentCode(String presidentCode) {
+        this.presidentCode = presidentCode;
+    }
+
     public Team getTeam() {
         return team;
     }
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+    
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 }
