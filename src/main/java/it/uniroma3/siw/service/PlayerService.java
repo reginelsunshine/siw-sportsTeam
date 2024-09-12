@@ -24,7 +24,7 @@ public class PlayerService {
         return result.orElse(null);
     }
 
-    public Player savePlayer(Player player) {
+    public Player save(Player player) {
         return playerRepository.save(player);
     }
 
@@ -49,9 +49,12 @@ public class PlayerService {
     public void deletePlayer(Long id) {
         playerRepository.deleteById(id);
     }
-    
 
     public List<Player> findPlayersByTeam(Team team) {
         return playerRepository.findByTeam(team);
+    }
+    
+    public void deleteById(Long id) { // Cambiato il nome del metodo
+        playerRepository.deleteById(id);
     }
 }

@@ -1,6 +1,5 @@
 package it.uniroma3.siw.model;
 
-
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -8,7 +7,7 @@ import java.util.List;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -18,11 +17,11 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private List<Player> players;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)  // Usa ALL per gestire tutte le operazioni
     @JoinColumn(name = "president_id")
     private President president;
 
-    // Getters and Setters
+    // Getters e Setters
 
     public Long getId() {
         return id;

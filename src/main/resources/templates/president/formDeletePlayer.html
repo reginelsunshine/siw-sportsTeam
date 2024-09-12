@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rimuovi Giocatore</title>
+</head>
+<body>
+    <h1>Rimuovi un Giocatore</h1>
+
+    <form th:action="@{/president/deletePlayer}" method="post">
+        <label for="player">Seleziona Giocatore:</label>
+        <select id="player" name="playerId" required>
+            <option th:each="player : ${players}" th:value="${player.id}" th:text="${player.firstName + ' ' + player.lastName}"></option>
+        </select>
+        
+        <label for="presidentFiscalCode">Codice Fiscale Presidente:</label>
+        <input type="text" id="presidentFiscalCode" name="presidentFiscalCode" required />
+        
+        <label for="presidentCode">Codice Presidente:</label>
+        <input type="text" id="presidentCode" name="presidentCode" required />
+        
+        <button type="submit">Rimuovi Giocatore</button>
+    </form>
+</body>
+</html>

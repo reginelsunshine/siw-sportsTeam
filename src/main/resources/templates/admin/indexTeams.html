@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Operazioni Squadre</title>
     <link rel="stylesheet" href="/css/stile.css" />
@@ -9,8 +9,22 @@
         <h1>Operazioni Squadre</h1>
     </header>
 
-    <div>
-        <p>Benvenuto alla pagina di gestione delle squadre!</p>
-    </div>
+    <nav>
+        <ul>
+            <!-- Collegamento per inserire una nuova squadra -->
+            <li>
+                <a href="/admin/formNewTeam">Inserisci Nuova Squadra</a>
+            </li>
+            
+            <!-- Collegamento per aggiornare una squadra esistente -->
+            <li>
+                <a href="/admin/formUpdateTeam">Aggiorna Squadra Esistente</a>
+            </li>
+            
+          
+        </ul>
+    </nav>
+
+
 </body>
 </html>

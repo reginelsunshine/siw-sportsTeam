@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettagli Giocatore</title>
+</head>
+<body>
+    <h1>Dettagli Giocatore</h1>
+    <p><strong>Nome:</strong> <span th:text="${player.firstName}"></span></p>
+    <p><strong>Cognome:</strong> <span th:text="${player.lastName}"></span></p>
+    <p><strong>Data di Nascita:</strong> <span th:text="${player.dateOfBirth}"></span></p>
+    <p><strong>Luogo di Nascita:</strong> <span th:text="${player.placeOfBirth}"></span></p>
+    <p><strong>Ruolo:</strong> <span th:text="${player.role}"></span></p>
+    <p><strong>Data di Inizio Registrazione:</strong> <span th:text="${player.startDateOfRegistration}"></span></p>
+    <p><strong>Data di Fine Registrazione:</strong> <span th:text="${player.endDateOfRegistration}"></span></p>
+    <p><strong>Squadra:</strong> <span th:text="${player.team.name}"></span></p>
+
+    <a href="#" th:href="@{/teams/{teamId}(teamId=${player.team.id})}">Torna alla Squadra</a>
+</body>
+</html>

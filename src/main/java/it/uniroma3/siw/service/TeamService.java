@@ -14,35 +14,39 @@ public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
 
-    public List<Team> findAllTeams() {
-        return teamRepository.findAll();
+    // Trova tutti i team
+    public List<Team> findAll() {
+        return (List<Team>) teamRepository.findAll();
     }
 
-    public Team findTeamById(Long id) {
-        Optional<Team> result = teamRepository.findById(id);
-        return result.orElse(null);
+    // Trova un team per ID
+    public Optional<Team> findById(Long id) {
+        return teamRepository.findById(id);
     }
 
-    public Team saveTeam(Team team) {
+    // Salva un team
+    public Team save(Team team) {
         return teamRepository.save(team);
     }
 
-    public Team updateTeam(Long id, Team team) {
+    // Aggiorna un team esistente
+    public Team update(Long id, Team updatedTeam) {
         Optional<Team> existingTeam = teamRepository.findById(id);
         if (existingTeam.isPresent()) {
-            Team updatedTeam = existingTeam.get();
-            updatedTeam.setName(team.getName());
-            updatedTeam.setFoundationYear(team.getFoundationYear());
-            updatedTeam.setAddress(team.getAddress());
-            updatedTeam.setPlayers(team.getPlayers());
-            updatedTeam.setPresident(team.getPresident());
-            return teamRepository.save(updatedTeam);
+            Team team = existingTeam.get();
+            team.setName(updatedTeam.getName());
+            team.setFoundationYear(updatedTeam.getFoundationYear());
+            team.setAddress(updatedTeam.getAddress());
+            team.setPresident(updatedTeam.getPresident());
+            // Nota: Non si aggiorna players perché la relazione è gestita in modo unidirezionale.
+            return teamRepository.save(team);
         } else {
             return null;
         }
     }
 
-    public void deleteTeamById(Long id) {
+    // Cancella un team per ID
+    public void deleteById(Long id) {
         teamRepository.deleteById(id);
     }
 }

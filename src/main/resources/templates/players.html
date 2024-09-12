@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Elenco Giocatori</title>
+</head>
+<body>
+    <h1>Elenco Giocatori</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Ruolo</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="player : ${players}">
+                <td th:text="${player.firstName}"></td>
+                <td th:text="${player.lastName}"></td>
+                <td th:text="${player.role}"></td>
+                <td>
+                    <a th:href="@{/players/{id}(id=${player.id})}">Dettagli</a>
+                    <!-- Aggiungi ulteriori azioni se necessario -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="#" th:href="@{/teams/{teamId}(teamId=${teamId})}">Torna alla Squadra</a>
+</body>
+</html>

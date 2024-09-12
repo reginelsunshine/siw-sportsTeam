@@ -1,50 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Gestione Giocatori</title>
+    <title>SiwSportsTeam - Gestione Giocatori</title>
+    <link rel="stylesheet" href="/css/stile.css" />
 </head>
 <body>
-    <h3>Gestione Giocatori della Squadra</h3>
+      <header>
+        <div th:if="${userDetails}">
+            <span th:text="${userDetails.username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
+        <div th:unless="${userDetails}">
+            <a href="/login">Login</a>
+        </div>
+    </header>
 
-    <!-- Sezione per Aggiungere un Giocatore -->
-    <h4>Aggiungi un Giocatore</h4>
-    <form th:action="@{/addPlayer}" method="post">
-        <div>
-            <label for="name">Nome Giocatore:</label>
-            <input type="text" id="name" name="name" placeholder="Nome Giocatore" required>
-        </div>
-        <div>
-            <label for="teamId">ID Squadra:</label>
-            <input type="text" id="teamId" name="teamId" placeholder="ID Squadra" required>
-        </div>
-        <div>
-            <button type="submit">Aggiungi Giocatore</button>
-        </div>
-    </form>
-
-    <!-- Sezione per Rimuovere un Giocatore -->
-    <h4>Rimuovi un Giocatore</h4>
-    <form th:action="@{/removePlayer}" method="post">
-        <div>
-            <label for="nameToRemove">Nome Giocatore:</label>
-            <input type="text" id="nameToRemove" name="nameToRemove" placeholder="Nome Giocatore" required>
-        </div>
-        <div>
-            <label for="teamIdToRemove">ID Squadra:</label>
-            <input type="text" id="teamIdToRemove" name="teamIdToRemove" placeholder="ID Squadra" required>
-        </div>
-        <div>
-            <button type="submit">Rimuovi Giocatore</button>
-        </div>
-    </form>
-
-    <!-- Messaggi di errore o successo -->
-    <div th:if="${error}">
-        <p th:text="${error}" style="color: red;"></p>
+    <div>
+        <a href="/"><img src="/images/logo-siw.png" width="20%" alt="Logo"/></a>
     </div>
-    <div th:if="${message}">
-        <p th:text="${message}" style="color: green;"></p>
+	
+	<h1>Consulta l'archivio</h1>
+	<div>
+		<a href="/players">Elenco Giocatori</a>
+	</div>
+	
+	</div>
+    <h1>Operazioni per Presidente</h1>
+    <div>
+    
+    <div>
+        <a href="/president/indexPlayers">Operazioni sui giocatori</a>
     </div>
 </body>
 </html>

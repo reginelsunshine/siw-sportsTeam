@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Aggiungi Giocatore</title>
+</head>
+<body>
+    <h1>Aggiungi Giocatore</h1>
+    <form th:action="@{/president/formNewPlayer}" th:object="${player}" method="post">
+        <!-- Campo per il nome di battesimo del giocatore -->
+        <label for="firstName">Nome:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" placeholder="Inserisci il nome di battesimo" required />
+        <br/>
+
+        <!-- Campo per il cognome del giocatore -->
+        <label for="lastName">Cognome:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" placeholder="Inserisci il cognome" required />
+        <br/>
+
+        <!-- Campo per la data di nascita del giocatore -->
+        <label for="dateOfBirth">Data di nascita:</label>
+        <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required />
+        <br/>
+
+        <!-- Campo per il luogo di nascita del giocatore -->
+        <label for="placeOfBirth">Luogo di nascita:</label>
+        <input type="text" id="placeOfBirth" th:field="*{placeOfBirth}" placeholder="Inserisci il luogo di nascita" required />
+        <br/>
+
+        <!-- Campo per il ruolo del giocatore -->
+        <label for="role">Ruolo:</label>
+        <input type="text" id="role" th:field="*{role}" placeholder="Inserisci il ruolo del giocatore" required />
+        <br/>
+
+        <!-- Campo per la data di inizio registrazione -->
+        <label for="startDateOfRegistration">Data di inizio registrazione:</label>
+        <input type="date" id="startDateOfRegistration" th:field="*{startDateOfRegistration}" required />
+        <br/>
+
+        <!-- Campo per la data di fine registrazione -->
+        <label for="endDateOfRegistration">Data di fine registrazione:</label>
+        <input type="date" id="endDateOfRegistration" th:field="*{endDateOfRegistration}" />
+        <br/>
+
+        <!-- Campo nascosto per il team ID -->
+        <input type="hidden" name="teamId" th:value="${teamId}" />
+
+        <!-- Campo nascosto per il codice fiscale del presidente -->
+        <input type="hidden" name="presidentFiscalCode" th:value="${presidentFiscalCode}" />
+
+        <!-- Campo nascosto per il codice del presidente -->
+        <input type="hidden" name="presidentCode" th:value="${presidentCode}" />
+
+        <!-- Pulsante di invio del modulo -->
+        <input type="submit" value="Aggiungi Giocatore" />
+    </form>
+    <a href="/president/indexPlayers">Torna alla lista dei giocatori</a>
+</body>
+</html>

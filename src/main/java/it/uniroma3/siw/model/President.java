@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class President {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String firstName;
@@ -17,10 +17,8 @@ public class President {
     private String placeOfBirth;
     private String presidentCode;
 
-    
     private String passwordHash;
-    
-    
+
     @OneToOne(mappedBy = "president")
     private Team team;
 
@@ -82,19 +80,19 @@ public class President {
         this.presidentCode = presidentCode;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-    
     public String getPasswordHash() {
         return passwordHash;
     }
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

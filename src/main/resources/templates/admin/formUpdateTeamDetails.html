@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>Inserisci Nuova Squadra</title>
+    <title>Aggiorna Squadra</title>
     <link rel="stylesheet" href="/css/stile.css" />
 </head>
 <body>
     <header>
-        <h1>Inserisci Nuova Squadra</h1>
+        <h1>Aggiorna Squadra</h1>
     </header>
     
-    <form th:action="@{/admin/formNewTeam}" method="post" th:object="${team}">
+    <form th:action="@{/admin/formUpdateTeamDetails/{id}(id=${team.id})}" method="post" th:object="${team}">
+        <input type="hidden" th:field="*{id}" />
+        
         <label for="name">Nome Squadra:</label>
         <input type="text" id="name" th:field="*{name}" required />
         
@@ -25,7 +27,7 @@
         <label for="presidentLastName">Cognome Presidente:</label>
         <input type="text" id="presidentLastName" th:field="*{president.lastName}" required />
 
-        <button type="submit">Inserisci Squadra</button>
+        <button type="submit">Aggiorna Squadra</button>
     </form>
 
     <footer>

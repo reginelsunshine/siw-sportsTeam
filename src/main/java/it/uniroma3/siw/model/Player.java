@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String firstName;
@@ -96,4 +96,3 @@ public class Player {
         this.team = team;
     }
 }
-
