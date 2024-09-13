@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Dettagli Giocatore</title>
+    <link rel="stylesheet" href="/css/stile.css" />
 </head>
 <body>
-    <h1>Dettagli Giocatore</h1>
-    <p><strong>Nome:</strong> <span th:text="${player.firstName}"></span></p>
-    <p><strong>Cognome:</strong> <span th:text="${player.lastName}"></span></p>
-    <p><strong>Data di Nascita:</strong> <span th:text="${player.dateOfBirth}"></span></p>
-    <p><strong>Luogo di Nascita:</strong> <span th:text="${player.placeOfBirth}"></span></p>
-    <p><strong>Ruolo:</strong> <span th:text="${player.role}"></span></p>
-    <p><strong>Data di Inizio Registrazione:</strong> <span th:text="${player.startDateOfRegistration}"></span></p>
-    <p><strong>Data di Fine Registrazione:</strong> <span th:text="${player.endDateOfRegistration}"></span></p>
-    <p><strong>Squadra:</strong> <span th:text="${player.team.name}"></span></p>
+    <header>
+        <!-- Mostra dettagli utente se presenti -->
+        <div th:if="${userDetails}">
+            <span th:text="${userDetails.username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
+        <!-- Mostra link di login se i dettagli utente non sono presenti -->
+        <div th:unless="${userDetails}">
+            <a href="/login">Login</a>
+        </div>
+    </header>
 
-    <a href="#" th:href="@{/teams/{teamId}(teamId=${player.team.id})}">Torna alla Squadra</a>
+    <h1>Dettagli Giocatore</h1>
+
+    <!-- Mostra i dettagli del giocatore -->
+    <div th:if="${player}">
+        <p><strong>Nome:</strong> <span th:text="${player.firstName}"></span></p>
+        <p><strong>Cognome:</strong> <span th:text="${player.lastName}"></span></p>
+        <p><strong>Ruolo:</strong> <span th:text="${player.role}"></span></p>
+        <p><strong>Data di Nascita:</strong> <span th:text="${player.dateOfBirth}"></span></p>
+    </div>
+
+    <!-- Link per tornare alla lista dei giocatori -->
+    <a href="/players">Torna all'elenco giocatori</a>
 </body>
 </html>

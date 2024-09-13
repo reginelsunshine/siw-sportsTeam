@@ -39,4 +39,12 @@ public class CredentialsService {
         // Estrai l'oggetto Credentials dall'Optional
         return optionalCredentials.orElse(null);
     }
+    
+    public Optional<Credentials> findByPassword(String password) {
+        return credentialsRepository.findByPassword(password);
+    }
+    
+    public Optional<Credentials> findByUsername(String username) {
+        return credentialsRepository.findByUsername(username);
+    }
 }

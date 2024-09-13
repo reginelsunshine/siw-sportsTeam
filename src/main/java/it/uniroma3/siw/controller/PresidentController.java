@@ -1,6 +1,8 @@
 package it.uniroma3.siw.controller;
 
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.President;
+import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.PresidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ public class PresidentController {
 
     @Autowired
     private PresidentService presidentService;
+    
+    @Autowired CredentialsService credentialsService;
 
     @GetMapping("/indexPresident")
     public String showIndexPresident(Model model) {
@@ -23,19 +27,36 @@ public class PresidentController {
     }
 
     @PostMapping("/login")
-    public String loginPresident(@RequestParam("fiscalCode") String fiscalCode,
-                                 @RequestParam("presidentCode") String presidentCode,
+    public String loginPresident(@RequestParam("username") String username,
+                                 @RequestParam("password") String password,
                                  Model model) {
-        Optional<President> presidentOpt = presidentService.findByFiscalCodeAndPresidentCode(fiscalCode, presidentCode);
+        // Trova le credenziali per lo username dato
+        Optional<Credentials> credentialsOpt = credentialsService.findByUsername(username);
 
-        if (presidentOpt.isPresent()) {
-            President president = presidentOpt.get();
-            return "redirect:/president/indexPlayers";
+        if (credentialsOpt.isPresent()) {
+            Credentials credentials = credentialsOpt.get();
+
+            // Verifica se la password fornita corrisponde alla password memorizzata
+            if (credentials.getPassword().equals(password) && Credentials.PRESIDENT_ROLE.equals(credentials.getRole())) {
+                // Trova il presidente usando lo username
+                Optional<President> presidentOpt = presidentService.findByUsername(username);
+
+                if (presidentOpt.isPresent()) {
+                    return "redirect:/president/indexPlayers";
+                } else {
+                    model.addAttribute("error", "Presidente non trovato.");
+                    return "login";
+                }
+            } else {
+                model.addAttribute("error", "Password errata.");
+                return "login";
+            }
         } else {
-            model.addAttribute("error", "Codice fiscale o codice presidente errati.");
+            model.addAttribute("error", "Username non trovato.");
             return "login";
         }
     }
+
     
     // Metodo per accedere alla pagina indexPlayers
     @GetMapping("/president/indexPlayers")

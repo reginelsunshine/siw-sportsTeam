@@ -49,4 +49,8 @@ public class TeamService {
     public void deleteById(Long id) {
         teamRepository.deleteById(id);
     }
+    
+    public Optional<Team> findByPresidentId(Long presidentId) {
+        return teamRepository.findByPresidentId(presidentId);
+    }
 }

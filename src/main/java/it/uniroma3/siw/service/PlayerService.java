@@ -1,11 +1,14 @@
 package it.uniroma3.siw.service;
 
 import it.uniroma3.siw.model.Player;
+import it.uniroma3.siw.model.President;
 import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,46 +18,37 @@ public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @Autowired
+    private PresidentService presidentService;
+
+
+    public void savePlayer(Player player) {
+        playerRepository.save(player);
+    }
+
     public List<Player> getAllPlayers() {
-        return (List<Player>) playerRepository.findAll();
+        return playerRepository.findAll();
     }
 
-    public Player getPlayerById(Long id) {
-        Optional<Player> result = playerRepository.findById(id);
-        return result.orElse(null);
-    }
-
-    public Player save(Player player) {
-        return playerRepository.save(player);
-    }
-
-    public Player updatePlayer(Long id, Player player) {
-        Optional<Player> existingPlayer = playerRepository.findById(id);
-        if (existingPlayer.isPresent()) {
-            Player updatedPlayer = existingPlayer.get();
-            updatedPlayer.setFirstName(player.getFirstName());
-            updatedPlayer.setLastName(player.getLastName());
-            updatedPlayer.setDateOfBirth(player.getDateOfBirth());
-            updatedPlayer.setPlaceOfBirth(player.getPlaceOfBirth());
-            updatedPlayer.setRole(player.getRole());
-            updatedPlayer.setStartDateOfRegistration(player.getStartDateOfRegistration());
-            updatedPlayer.setEndDateOfRegistration(player.getEndDateOfRegistration());
-            updatedPlayer.setTeam(player.getTeam());
-            return playerRepository.save(updatedPlayer);
-        } else {
-            return null;
+    public void deleteById(Long playerId) {
+        if (playerId != null) {
+            playerRepository.deleteById(playerId);
         }
     }
 
-    public void deletePlayer(Long id) {
-        playerRepository.deleteById(id);
+    public List<Player> findPlayersForLoggedInPresident(Long teamId) {
+        if (teamId != null) {
+            return playerRepository.findByTeamId(teamId);
+        }
+        return Collections.emptyList();
     }
 
-    public List<Player> findPlayersByTeam(Team team) {
-        return playerRepository.findByTeam(team);
+    public Optional<Player> findById(Long id) {
+        return playerRepository.findById(id);
     }
     
-    public void deleteById(Long id) { // Cambiato il nome del metodo
-        playerRepository.deleteById(id);
+ // Trova tutti i giocatori associati a un determinato team
+    public List<Player> findByTeam(Team team) {
+        return playerRepository.findByTeam(team);
     }
 }

@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Elenco Giocatori</title>
-</head>
-<body>
-    <h1>Elenco Giocatori</h1>
+<h1>Giocatori del tuo Team</h1>
+
+<!-- Messaggio di errore se non ci sono giocatori o il presidente non è associato a un team -->
+<div th:if="${errorMessage}">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<!-- Visualizza i giocatori se presenti -->
+<div th:if="${players != null and !players.isEmpty()}">
     <table>
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Cognome</th>
                 <th>Ruolo</th>
-                <th>Azioni</th>
+                <th>Data di Registrazione Inizio</th>
+                <th>Data di Registrazione Fine</th>
             </tr>
         </thead>
         <tbody>
@@ -20,13 +22,9 @@
                 <td th:text="${player.firstName}"></td>
                 <td th:text="${player.lastName}"></td>
                 <td th:text="${player.role}"></td>
-                <td>
-                    <a th:href="@{/players/{id}(id=${player.id})}">Dettagli</a>
-                    <!-- Aggiungi ulteriori azioni se necessario -->
-                </td>
+                <td th:text="${player.startDateOfRegistration}"></td>
+                <td th:text="${player.endDateOfRegistration}"></td>
             </tr>
         </tbody>
     </table>
-    <a href="#" th:href="@{/teams/{teamId}(teamId=${teamId})}">Torna alla Squadra</a>
-</body>
-</html>
+</div>

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -11,7 +12,7 @@ public class Credentials {
 
     public static final String DEFAULT_ROLE = "DEFAULT";
     public static final String ADMIN_ROLE = "ADMIN";
-	public static final String PRESIDENT_ROLE = "PRESIDENT";
+    public static final String PRESIDENT_ROLE = "PRESIDENT";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,10 +24,11 @@ public class Credentials {
     @OneToOne
     private User user;
 
-    public String getUsername() {
-        return username;
-    }
+    @OneToOne
+    @JoinColumn(name = "president_id") // Questa è la colonna fisica
+    private President president;
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -35,12 +37,8 @@ public class Credentials {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {
@@ -62,4 +60,22 @@ public class Credentials {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    public void setPresident(President president) {
+        this.president = president;
+    }
+
+    public President getPresident() {
+        return president;
+    }
+
+   
 }

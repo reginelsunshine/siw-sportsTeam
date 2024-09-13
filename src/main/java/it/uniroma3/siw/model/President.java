@@ -12,14 +12,15 @@ public class President {
 
     private String firstName;
     private String lastName;
-    private String fiscalCode;
+    private String fiscalCode; // Usato anche come password criptata
     private LocalDate dateOfBirth;
     private String placeOfBirth;
     private String presidentCode;
-
+    private String username; 
     private String passwordHash;
 
-    @OneToOne(mappedBy = "president")
+    @OneToOne
+    @JoinColumn(name = "team_id", unique = true)
     private Team team;
 
     // Getters e Setters
@@ -78,6 +79,14 @@ public class President {
 
     public void setPresidentCode(String presidentCode) {
         this.presidentCode = presidentCode;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPasswordHash() {
