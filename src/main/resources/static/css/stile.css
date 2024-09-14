@@ -80,6 +80,11 @@ img.logo {
     margin-left: 1em; /* Distanza dal bordo sinistro */
 }
 
+/* Aggiungi margine inferiore ai div all'interno di .page-content */
+.page-content div {
+    margin-bottom: 1.5em; /* Spazio tra gli elementi div */
+}
+
 /* Stile della tabella */
 table {
     width: 100%;
@@ -110,4 +115,20 @@ tbody tr:hover {
 .error-message {
     color: red;
     margin-bottom: 1em;
+}
+
+header .admin-home {
+    color: darkgray;
+    text-decoration: none; /* Nessuna sottolineatura di default */
+    font-size: 1em;
+    margin-right: auto; /* Spinge il link verso il lato sinistro */
+}
+
+header .admin-home:hover {
+    text-decoration: underline; /* Sottolineatura quando il mouse è sopra */
+}
+
+.page-register {
+    margin-left: 1em; /* Distanza dal bordo sinistro */
+    
 }

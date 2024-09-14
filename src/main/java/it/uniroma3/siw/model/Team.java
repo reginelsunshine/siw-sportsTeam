@@ -17,7 +17,7 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private List<Player> players;
 
-    @OneToOne(cascade = CascadeType.ALL)  // Usa ALL per gestire tutte le operazioni
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "president_id")
     private President president;
 

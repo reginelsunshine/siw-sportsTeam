@@ -10,9 +10,21 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
+	
+	   private String username;
+
+	    // Getter e setter per username
+	    public String getUsername() {
+	        return username;
+	    }
+
+	    public void setUsername(String username) {
+	        this.username = username;
+	    }
+
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -28,7 +40,7 @@ public class User {
     }
 
     public User(Long id, String name, String surname, String email) {
-        this.id = id;
+      //  this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;

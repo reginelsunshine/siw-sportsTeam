@@ -94,5 +94,34 @@ public class TeamController {
         return "redirect:/teams";
     }
     
+
+    
+
+    @GetMapping("/admin/formDeleteTeam")
+    public String showDeleteTeamForm(Model model) {
+        model.addAttribute("teams", teamService.findAll()); // Passa tutte le squadre alla vista
+        return "admin/formDeleteTeam";
+    }
+
+    @PostMapping("/admin/deleteTeam")
+    public String deleteTeam(@RequestParam("teamId") Long teamId, Model model) {
+        Team team = teamService.findById(teamId).orElse(null);
+        if (team == null) {
+            model.addAttribute("errorMessage", "Team non trovato.");
+            return "admin/indexTeams";
+        }
+
+        try {
+            teamService.deleteTeam(teamId);
+            model.addAttribute("successMessage", "Team eliminato con successo!");
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Errore durante l'eliminazione del team. Assicurati che non ci siano relazioni attive.");
+        }
+
+        return "redirect:/admin/indexTeams"; // Torna alla pagina delle squadre dopo l'eliminazione
+    }
+
+
+
     
 }

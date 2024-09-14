@@ -19,9 +19,10 @@ public class President {
     private String username; 
     private String passwordHash;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)  // Propaga la cancellazione anche al team
     @JoinColumn(name = "team_id", unique = true)
     private Team team;
+
 
     // Getters e Setters
 

@@ -46,8 +46,10 @@ public class AuthConfiguration {
         http
             .csrf().disable()
             .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/css/**", "/images/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/css/**", "/images/**").permitAll() // Permetti accesso a queste URL senza autenticazione
+                .requestMatchers(HttpMethod.GET, "/teams", "/teams/**").permitAll() // Permetti accesso agli endpoint /teams e /teams/{id}
                 .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/teams").permitAll()
                 .requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
@@ -66,4 +68,6 @@ public class AuthConfiguration {
                 .permitAll();
         return http.build();
     }
+
+
 }

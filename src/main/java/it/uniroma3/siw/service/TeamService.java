@@ -2,6 +2,8 @@ package it.uniroma3.siw.service;
 
 import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.repository.TeamRepository;
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +54,10 @@ public class TeamService {
     
     public Optional<Team> findByPresidentId(Long presidentId) {
         return teamRepository.findByPresidentId(presidentId);
+    }
+    
+    @Transactional
+    public void deleteTeam(Long teamId) {
+        teamRepository.deleteById(teamId);
     }
 }

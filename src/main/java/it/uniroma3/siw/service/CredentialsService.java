@@ -15,6 +15,16 @@ public class CredentialsService {
 
     @Autowired
     protected PasswordEncoder passwordEncoder;
+    
+
+    public String encodePassword(String password) {
+        return passwordEncoder.encode(password);
+    }
+
+    public void saveCredentials(Credentials credentials) {
+        credentialsRepository.save(credentials);
+    }
+    
 
     @Autowired
     protected CredentialsRepository credentialsRepository;
@@ -25,12 +35,12 @@ public class CredentialsService {
         return result.orElse(null);
     }
 
-    @Transactional
+  /*  @Transactional
     public Credentials saveCredentials(Credentials credentials) {
         credentials.setRole(Credentials.DEFAULT_ROLE);
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
-    }
+    }*/
     
     public Credentials getCredentials(String username) {
         // Questo metodo ora restituisce Optional<Credentials> 

@@ -6,12 +6,20 @@
     <link rel="stylesheet" type="text/css" href="/css/stile.css"> <!-- Include il tuo CSS -->
 </head>
 <body>
-<div class="logo-container">
-    <img src="/images/logo-siw.png" class="logo" />
-</div>
-    <h3>Registrazione Completata</h3>
-    <p th:text="${message}" style="color: green;"></p>
-    <a href="/" th:href="@{/}">Torna alla Home</a>
-    <a href="/login" th:href="@{/login}">Accedi</a>
+     <header>
+        <a href="/success" class="admin-home">Admin Home</a>
+        <h1>Hai registrato un nuovo presidente!</h1>
+    </header>
+    <div class="logo-container">
+        <img src="/images/logo-siw.png" class="logo"/>
+    </div>
+    
+    
+    <div class="page-content">
+      
+        <div></div><p th:text="${message}" style="color: green;"></p></div>
+        <a href="/" th:href="@{/}">Torna alla Home</a>
+        <a href="/login" th:href="@{/login}">Accedi</a>
+    </div>
 </body>
 </html>

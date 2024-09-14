@@ -17,7 +17,7 @@
         <!-- Mostra Login e Registrati se non autenticato -->
         <div th:unless="${userDetails}" class="auth-links">
             <a th:href="@{/login}" th:text="Login">Login</a>
-            <a th:href="@{/register}" th:text="Registrati">Registrati</a>
+            <!-- <a th:href="@{/register}" th:text="Registrati">Registrati</a> -->
         </div>
     </header>
 
