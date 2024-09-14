@@ -1,9 +1,13 @@
 /* Stili generali */
 body { 
-    font-family: "Geneva";
+    font-family: "Geneva", sans-serif;
     color: dimgrey;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Link */
 a { 
     text-decoration: none; 
     color: darkgrey;
@@ -13,26 +17,31 @@ a:hover {
     text-decoration: underline; 
 }
 
+/* Etichette */
 label {
     width: 8em;
     display: inline-block;
 }
 
+/* Barra di intestazione */
 header {
-    background-color: rgb(181, 51, 9, 1);
+    background-color: rgb(181, 51, 9); /* Barra rossa */
     color: white;
     height: 4em;
-    margin-bottom: 0.5em;
-    padding: 0.2em;
-    text-align: right; 
+    padding: 0.5em;
+    display: flex;
+    justify-content: flex-end; /* Sposta gli elementi a destra */
+    align-items: center; /* Allinea verticalmente al centro */
+    border-radius: 0 0 15px 15px; /* Angoli tondeggianti ai lati inferiori */
+    position: relative; /* Necessario per il posizionamento del logo */
 }
 
-header a { 
-    text-decoration: none; 
-    color: white;
-    font-size: 0.6em;
+header .auth-links {
+    display: flex;
+    gap: 1em; /* Spazio tra i link */
 }
 
+/* Stile per la selezione */
 select {
     width: 100%;
     padding: 0.5em;
@@ -43,4 +52,62 @@ select {
 
 option {
     padding: 0.5em;
+}
+
+/* Stile del logo */
+.logo-container {
+    text-align: center; /* Centra l'immagine orizzontalmente */
+    position: relative; /* Necessario per posizionare il logo sopra la barra */
+    margin-top: -2em; /* Sposta il logo verso l'alto */
+    margin-bottom: 2em; /* Maggiore spazio sotto l'immagine */
+}
+
+img.logo {
+    width: 10%; /* Dimensione medio-piccola del logo */
+    border-radius: 50%; /* Rende il logo tondeggiante */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra per effetto 3D */
+}
+
+/* Stili per contenitori generali */
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* Centra il contenuto orizzontalmente */
+    padding: 1em;
+}
+
+/* Spaziatura per i contenuti sotto la barra */
+.page-content {
+    margin-left: 1em; /* Distanza dal bordo sinistro */
+}
+
+/* Stile della tabella */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+thead {
+    background-color: rgb(181, 51, 9); /* Colore di sfondo per l'intestazione della tabella */
+    color: white;
+}
+
+th, td {
+    padding: 0.75em;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #ddd;
+}
+
+/* Stile del messaggio di errore */
+.error-message {
+    color: red;
+    margin-bottom: 1em;
 }

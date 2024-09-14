@@ -8,7 +8,10 @@
     <header>
         <h1>Seleziona Squadra da Aggiornare</h1>
     </header>
-
+	<div class="logo-container">
+    <img src="/images/logo-siw.png" class="logo"/>
+</div>
+<div class="page-content">
     <form action="/admin/formUpdateTeam" method="get">
         <label for="teamId">Seleziona una squadra:</label>
         <select id="teamId" name="teamId" required>
@@ -20,8 +23,10 @@
         <button type="submit">Aggiorna Squadra</button>
     </form>
 
+
     <footer>
         <a href="/admin/indexTeams">Torna al Pannello di Amministrazione</a>
     </footer>
+    </div>
 </body>
 </html>

@@ -34,17 +34,24 @@ public class AuthenticationController {
     @Autowired
 	private UserService userService;
 
-	@GetMapping(value = "/register") 
-	public String showRegisterForm(Model model) {
-		model.addAttribute("credentials", new Credentials());
-		model.addAttribute("user", new User());
-		return "formRegister";
-	}
+    @GetMapping(value = "/register") 
+    public String showRegisterForm(Model model) {
+        model.addAttribute("president", new User());  // Qui creiamo un nuovo oggetto User per il presidente
+        return "formRegister";
+    }
+
 	
-	@GetMapping(value = "/login") 
+	@GetMapping(value = "/login")
 	public String showLoginForm(Model model) {
-		return "formLogin";
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+	        // Se l'utente è autenticato, passiamo i dettagli dell'utente al modello
+	        model.addAttribute("userDetails", authentication.getPrincipal());
+	        return "redirect:/"; // Redirect o altra pagina se l'utente è già loggato
+	    }
+	    return "formLogin";
 	}
+
 	
 	@GetMapping(value = "/admin/indexAdmin") 
 	public String showIndexAdmin(Model model) {
@@ -92,22 +99,17 @@ public class AuthenticationController {
     }
      
     @PostMapping(value = { "/register" })
-    public String registerUser(@Valid @ModelAttribute("user") User user,
-                 BindingResult userBindingResult, @Valid
-                 @ModelAttribute("credentials") Credentials credentials,
-                 BindingResult credentialsBindingResult,
-                 Model model) {
-    	
-    	this.userValidator.validate(user, userBindingResult);
-        this.credentialsValidator.validate(credentials, credentialsBindingResult);
-
-        if (!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
-            this.userService.saveUser(user);
-            credentials.setUser(user);
-            credentialsService.saveCredentials(credentials);
-            model.addAttribute("user", user);
-            return "registrationSuccessful";
+    public String registerUser(@Valid @ModelAttribute("president") User president,
+                               BindingResult bindingResult, Model model) {
+        
+        if (bindingResult.hasErrors()) {
+            return "formRegister";
         }
-        return "formRegister";
+        
+        // Logica per salvare l'utente presidente
+        userService.saveUser(president);
+        
+        return "registrationSuccessful";
     }
+
 }

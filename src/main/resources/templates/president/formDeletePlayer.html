@@ -1,25 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Rimuovi Giocatore</title>
+    <link rel="stylesheet" href="/css/stile.css" />
 </head>
 <body>
-    <h1>Rimuovi un Giocatore</h1>
+<header>
+    <div th:if="${userDetails}">
+        <span th:text="${userDetails.username}"></span>
+        <a href="/logout">Logout</a>
+    </div>
+    <div th:unless="${userDetails}">
+        <a href="/login"><h1>Login</h1></a>
+    </div>
+</header>
+<div class="logo-container">
+    <img src="/images/logo-siw.png" class="logo"/>
+</div>
+<div class="page-content">
+<h1>Rimozione di un Giocatore</h1>
 
-    <form th:action="@{/president/deletePlayer}" method="post">
-        <label for="player">Seleziona Giocatore:</label>
-        <select id="player" name="playerId" required>
-            <option th:each="player : ${players}" th:value="${player.id}" th:text="${player.firstName + ' ' + player.lastName}"></option>
-        </select>
-        
-        <label for="presidentFiscalCode">Codice Fiscale Presidente:</label>
-        <input type="text" id="presidentFiscalCode" name="presidentFiscalCode" required />
-        
-        <label for="presidentCode">Codice Presidente:</label>
-        <input type="text" id="presidentCode" name="presidentCode" required />
-        
-        <button type="submit">Rimuovi Giocatore</button>
-    </form>
+<form th:action="@{/president/deletePlayer}" method="post">
+    <label for="player">Seleziona Giocatore:</label>
+    <select id="player" name="playerId" required>
+        <option th:each="player : ${players}" th:value="${player.id}" th:text="${player.firstName + ' ' + player.lastName}"></option>
+    </select>
+    
+    <label for="presidentFiscalCode">Codice Fiscale Presidente:</label>
+    <input type="text" id="presidentFiscalCode" name="presidentFiscalCode" required />
+    
+    <label for="presidentCode">Codice Presidente:</label>
+    <input type="text" id="presidentCode" name="presidentCode" required />
+    
+    <button type="submit">Rimuovi Giocatore</button>
+</form>
+</div>
 </body>
 </html>

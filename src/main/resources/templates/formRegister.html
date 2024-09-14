@@ -6,8 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/css/stile.css">
 </head>
 <body>
+    <div class="logo-container">
+        <img src="/images/logo-siw.png" class="logo" />
+    </div>
     <h2>Registrazione Presidente</h2>
-    <form th:action="@{/register}" method="post" th:object="${president}">
+    <form th:action="@{/register}" method="POST" th:object="${president}">
         <div>
             <label for="fiscalCode">Codice Fiscale:</label>
             <input type="text" id="fiscalCode" th:field="*{fiscalCode}" placeholder="Codice Fiscale" required />
@@ -15,7 +18,7 @@
 
         <div>
             <label for="presidentCode">Codice Presidente:</label>
-            <input type="text" id="presidentCode" name="presidentCode" placeholder="Codice Presidente" required />
+            <input type="text" id="presidentCode" th:field="*{presidentCode}" placeholder="Codice Presidente" required />
         </div>
 
         <div>

@@ -2,29 +2,35 @@
 <html>
 
 <head>
-	<title>
-		SiwSportsTeam - Homepage
-	</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+    <title>SiwSportsTeam - Homepage</title>
+    <link rel="stylesheet" href="/css/stile.css" />
 </head>
 
 <body>
-<header>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${user}">
-			<a href="/login"><h1>Login</h1></a>
-		</div>
-	</header>
+    <header>
+        <!-- Mostra nome utente e Logout se autenticato -->
+        <div th:if="${userDetails}">
+            <span th:text="${userDetails.username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
+        
+        <!-- Mostra Login e Registrati se non autenticato -->
+        <div th:unless="${userDetails}" class="auth-links">
+            <a th:href="@{/login}" th:text="Login">Login</a>
+            <a th:href="@{/register}" th:text="Registrati">Registrati</a>
+        </div>
+    </header>
 
-	<div><img src="/images/logo-siw.png" width="20%" /></div>
-	<h1>Consulta l'archivio</h1>
-	<div>
-		<a href="/teams">Elenco Squadre</a>
-	</div>
-	
+    <div class="logo-container">
+        <img src="/images/logo-siw.png" class="logo" />
+    </div>
+
+    <div class="page-content">
+        <h1>Consulta l'archivio</h1>
+        <div>
+            <a href="/teams">Elenco Squadre</a>
+        </div>
+    </div>
 </body>
 
 </html>

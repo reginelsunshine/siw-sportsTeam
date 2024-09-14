@@ -1,30 +1,51 @@
-<h1>Giocatori del tuo Team</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Giocatori del tuo Team</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+    <header>
+        <div class="login-register">
+            <a href="/login">Login</a>
+            <a href="/register">Registrati</a>
+        </div>
+    </header>
 
-<!-- Messaggio di errore se non ci sono giocatori o il presidente non è associato a un team -->
-<div th:if="${errorMessage}">
-    <p th:text="${errorMessage}"></p>
+  <div class="logo-container">
+    <img src="/images/logo-siw.png" class="logo" />
 </div>
+    <div class="container">
+        <h1>Giocatori del tuo Team</h1>
 
-<!-- Visualizza i giocatori se presenti -->
-<div th:if="${players != null and !players.isEmpty()}">
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Cognome</th>
-                <th>Ruolo</th>
-                <th>Data di Registrazione Inizio</th>
-                <th>Data di Registrazione Fine</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="player : ${players}">
-                <td th:text="${player.firstName}"></td>
-                <td th:text="${player.lastName}"></td>
-                <td th:text="${player.role}"></td>
-                <td th:text="${player.startDateOfRegistration}"></td>
-                <td th:text="${player.endDateOfRegistration}"></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <!-- Messaggio di errore se non ci sono giocatori o il presidente non è associato a un team -->
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <!-- Visualizza i giocatori se presenti -->
+        <div th:if="${players != null and !players.isEmpty()}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Ruolo</th>
+                        <th>Data di Registrazione Inizio</th>
+                        <th>Data di Registrazione Fine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="player : ${players}">
+                        <td th:text="${player.firstName}"></td>
+                        <td th:text="${player.lastName}"></td>
+                        <td th:text="${player.role}"></td>
+                        <td th:text="${player.startDateOfRegistration}"></td>
+                        <td th:text="${player.endDateOfRegistration}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
