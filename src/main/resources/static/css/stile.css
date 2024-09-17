@@ -132,3 +132,190 @@ header .admin-home:hover {
     margin-left: 1em; /* Distanza dal bordo sinistro */
     
 }
+
+/* Stile per il form di login */
+.login-form {
+    background-color: #f9f9f9; /* Sfondo chiaro per il form */
+    padding: 2em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 400px; /* Limita la larghezza del form */
+    margin: 2em auto; /* Centra il form e aggiunge margine */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leggera ombra */
+}
+
+/* Stile per i campi del form */
+.login-form .form-group {
+    margin-bottom: 1.5em;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #333;
+    font-weight: bold;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.75em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Stile per il pulsante di submit */
+.login-form .submit-button {
+    width: 100%;
+    padding: 0.75em;
+    background-color: rgb(181, 51, 9); /* Colore rosso simile alla barra */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.login-form .submit-button:hover {
+    background-color: darkred; /* Colore più scuro al passaggio del mouse */
+}
+
+/* Stile per il link di registrazione */
+.register-link {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.register-link a {
+    color: rgb(181, 51, 9); /* Colore rosso per il link di registrazione */
+    font-size: 1em;
+    text-decoration: underline;
+}
+
+.register-link a:hover {
+    color: darkred;
+}
+
+/* Stile per il messaggio di errore */
+.error-message {
+    color: red;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+/* Stile per il titolo della pagina */
+.page-title {
+    text-align: center; /* Centra il testo orizzontalmente */
+    color: gray; 
+    margin: 1em 0; /* Spazio sopra e sotto il titolo */
+    font-size: 2em; /* Dimensione del font */
+}
+
+/* Stile per il contenitore delle squadre */
+.teams-container {
+    text-align: center; /* Centra il contenuto orizzontalmente */
+    margin: 2em 0; /* Spazio sopra e sotto */
+}
+
+.teams-link {
+    display: inline-block; /* Permette di applicare il padding e i bordi */
+    padding: 1em 2em; /* Spazio interno */
+    background-color: rgb(181, 51, 9); /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    border-radius: 10px; /* Bordo arrotondato */
+    text-decoration: none; /* Nessuna sottolineatura */
+    font-size: 1.2em; /* Dimensione del font */
+    transition: background-color 0.3s; /* Transizione del colore di sfondo */
+}
+
+.teams-link:hover {
+    background-color: darkred; /* Colore di sfondo al passaggio del mouse */
+}
+
+/* Stile per il box "Accedi" */
+.president-info {
+    text-align: center; /* Centra il contenuto orizzontalmente */
+    margin: 2em 0; /* Spazio sopra e sotto */
+    padding: 2em; /* Spazio interno */
+    border: 1px solid #ddd; /* Bordo leggero */
+    border-radius: 10px; /* Bordo arrotondato */
+    background-color: #f9f9f9; /* Colore di sfondo chiaro */
+}
+
+.president-login-link {
+    display: inline-block; /* Permette di applicare il padding e i bordi */
+    padding: 0.5em 1.5em; /* Spazio interno */
+    background-color: rgb(181, 51, 9); /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    border-radius: 5px; /* Bordo arrotondato */
+    text-decoration: none; /* Nessuna sottolineatura */
+    font-size: 1em; /* Dimensione del font */
+    transition: background-color 0.3s; /* Transizione del colore di sfondo */
+}
+
+.president-login-link:hover {
+    background-color: darkred; /* Colore di sfondo al passaggio del mouse */
+}
+
+/* Stile per la sezione delle squadre */
+.teams-section {
+    margin-left: 1em; /* Distanza dal bordo sinistro */
+}
+
+.teams-section h1 {
+    font-size: 2em; /* Dimensione del font per il titolo */
+    color: gray; /* Colore del testo */
+    margin-bottom: 1em; /* Spazio sotto il titolo */
+    text-align: left; /* Allinea il titolo a sinistra */
+}
+
+.teams-list {
+    list-style-type: square; /* Punta con quadratini neri */
+    padding-left: 1.5em; /* Spazio a sinistra per il puntino */
+}
+
+.teams-list li {
+    margin-bottom: 0.5em; /* Spazio tra gli elementi della lista */
+}
+
+.teams-list a {
+    color: rgb(181, 51, 9); /* Colore del testo */
+    text-decoration: none; /* Nessuna sottolineatura */
+    font-size: 1.5em; /* Dimensione del font */
+}
+
+.teams-list a:hover {
+    text-decoration: underline; /* Sottolineatura al passaggio del mouse */
+}
+
+/* Stile per la sezione delle operazioni sui giocatori */
+.operations-section {
+    margin-left: 1em; /* Distanza dal bordo sinistro */
+}
+
+.operations-section h1 {
+    font-size: 2em; /* Dimensione del font per il titolo */
+    color: gray; /* Colore del testo */
+    margin-bottom: 1em; /* Spazio sotto il titolo */
+    text-align: left; /* Allinea il titolo a sinistra */
+}
+
+.operations-list {
+    list-style-type: square; /* Punta con quadratini neri */
+    padding-left: 1.5em; /* Spazio a sinistra per il puntino */
+}
+
+.operations-list li {
+    margin-bottom: 0.5em; /* Spazio tra gli elementi della lista */
+}
+
+.operations-list a {
+    color: rgb(181, 51, 9); /* Colore del testo */
+    text-decoration: none; /* Nessuna sottolineatura */
+    font-size: 1em; /* Dimensione del font */
+}
+
+.operations-list a:hover {
+    text-decoration: underline; /* Sottolineatura al passaggio del mouse */
+}
