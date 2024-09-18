@@ -319,3 +319,83 @@ header .admin-home:hover {
 .operations-list a:hover {
     text-decoration: underline; /* Sottolineatura al passaggio del mouse */
 }
+
+/* Stile per i box arrotondati */
+.rounded-box {
+    background-color: #f9f9f9; /* Colore di sfondo chiaro */
+    border: 1px solid #ddd; /* Bordo leggero */
+    border-radius: 15px; /* Angoli arrotondati */
+    padding: 1.5em; /* Spazio interno */
+    margin-bottom: 2em; /* Spazio inferiore */
+    text-align: left; /* Centra il testo all'interno del box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+      max-width: 350px;
+}
+
+.rounded-box a {
+    display: inline-block; /* Permette di applicare il padding e i bordi */
+    padding: 0.75em 1.5em; /* Spazio interno */
+    background-color: rgb(181, 51, 9); /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    border-radius: 10px; /* Bordo arrotondato */
+    text-decoration: none; /* Nessuna sottolineatura */
+    font-size: 1.2em; /* Dimensione del font */
+    transition: background-color 0.3s; /* Transizione del colore di sfondo */
+}
+
+.rounded-box a:hover {
+    background-color: darkred; /* Colore di sfondo al passaggio del mouse */
+}
+
+/* Pulsante di invio per aggiungere squadra */
+.submit-button {
+    width: 100%;
+    padding: 0.75em;
+    background-color: rgb(181, 51, 9); /* Colore rosso simile alla barra */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: darkred; /* Colore più scuro al passaggio del mouse */
+}
+/* Stile per il link di annullamento */
+.cancel {
+    display: inline-block;
+    padding: 0.75em 1.5em; /* Spaziatura interna per il link */
+    background-color: rgb(181, 51, 9); /* Colore di sfondo simile alla barra */
+    color: white; /* Colore del testo */
+    border: none;
+    border-radius: 5px; /* Angoli arrotondati */
+    font-size: 1em; /* Dimensione del font */
+    text-decoration: none; /* Rimuove la sottolineatura predefinita */
+    text-align: center; /* Allinea il testo al centro */
+    transition: background-color 0.3s; /* Transizione per effetto hover */
+}
+
+.cancel:hover {
+    background-color: darkred; /* Colore di sfondo più scuro al passaggio del mouse */
+}
+/* Stile per il pulsante di submit */
+.btn-submit {
+   background-color: rgb(181, 51, 9);  /* Colore di sfondo rosso */
+    color: white; /* Colore del testo bianco */
+    border: none; /* Rimuove il bordo predefinito */
+    padding: 0.5em 1em; /* Spaziatura interna del pulsante */
+    border-radius: 5px; /* Bordo arrotondato */
+    cursor: pointer; /* Cursore a mano */
+    font-size: 1em; /* Dimensione del testo */
+    text-align: center; /* Allineamento del testo */
+    transition: background-color 0.3s; /* Transizione fluida per il colore di sfondo */
+}
+
+/* Effetto hover per il pulsante */
+.btn-submit:hover {
+    background-color: darkred; 
+}
+

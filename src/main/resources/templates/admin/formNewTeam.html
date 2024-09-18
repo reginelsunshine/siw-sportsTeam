@@ -3,36 +3,52 @@
 <head>
     <title>Inserisci Nuova Squadra</title>
     <link rel="stylesheet" href="/css/stile.css" />
+    <link rel="stylesheet" href="/css/button-style.css" /> <!-- Include il CSS per il pulsante -->
 </head>
 <body>
     <header>
         <h1>Inserisci Nuova Squadra</h1>
     </header>
     <div class="logo-container">
-    <img src="/images/logo-siw.png" class="logo"/>
-</div>
-<div class="page-content">
-    <form th:action="@{/admin/formNewTeam}" method="post" th:object="${team}">
-        <label for="name">Nome Squadra:</label>
-        <input type="text" id="name" th:field="*{name}" required />
-        
-        <label for="foundationYear">Anno di Fondazione:</label>
-        <input type="number" id="foundationYear" th:field="*{foundationYear}" required />
-        
-        <label for="address">Indirizzo:</label>
-        <input type="text" id="address" th:field="*{address}" required />
-        
-        <label for="presidentFirstName">Nome Presidente:</label>
-        <input type="text" id="presidentFirstName" th:field="*{president.firstName}" required />
-        
-        <label for="presidentLastName">Cognome Presidente:</label>
-        <input type="text" id="presidentLastName" th:field="*{president.lastName}" required />
+        <img src="/images/logo-siw.png" class="logo"/>
+    </div>
+    <div class="page-content">
+        <form th:action="@{/admin/formNewTeam}" method="post" th:object="${team}">
+            <div class="rounded-box">
+                <label for="name">Nome Squadra:</label>
+                <input type="text" id="name" th:field="*{name}" required />
+            </div>
+            
+            <div class="rounded-box">
+                <label for="foundationYear">Anno di Fondazione:</label>
+                <input type="number" id="foundationYear" th:field="*{foundationYear}" required />
+            </div>
+            
+            <div class="rounded-box">
+                <label for="address">Indirizzo:</label>
+                <input type="text" id="address" th:field="*{address}" required />
+            </div>
+            
+            <div class="rounded-box">
+                <label for="presidentFirstName">Nome Presidente:</label>
+                <input type="text" id="presidentFirstName" th:field="*{president.firstName}" required />
+            </div>
+            
+            <div class="rounded-box">
+                <label for="presidentLastName">Cognome Presidente:</label>
+                <input type="text" id="presidentLastName" th:field="*{president.lastName}" required />
+            </div>
 
-        <button type="submit">Inserisci Squadra</button>
-    </form>
+            <div class="rounded-box">
+                <button type="submit" class="submit-button">Inserisci Squadra</button> <!-- Applica la classe del pulsante -->
+            </div>
+        </form>
 
-    <footer>
-        <a href="/admin/indexTeams">Torna al Pannello di Amministrazione</a>
-    </footer>
+        <footer>
+            <div class="rounded-box">
+                <a href="/admin/indexTeams">Torna al Pannello di Amministrazione</a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

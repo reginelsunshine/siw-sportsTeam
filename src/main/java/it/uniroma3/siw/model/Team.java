@@ -14,13 +14,13 @@ public class Team {
     private int foundationYear;
     private String address;
 
+
     @OneToMany(mappedBy = "team")
     private List<Player> players;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "president_id")
     private President president;
-
     // Getters e Setters
 
     public Long getId() {

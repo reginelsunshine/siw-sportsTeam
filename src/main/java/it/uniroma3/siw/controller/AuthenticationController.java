@@ -1,5 +1,7 @@
 package it.uniroma3.siw.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,9 +19,11 @@ import it.uniroma3.siw.controller.validator.UserValidator;
 import it.uniroma3.siw.dto.PresidentRegistrationDTO;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.President;
+import it.uniroma3.siw.model.Team; // Importa la classe Team
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.PresidentService;
+import it.uniroma3.siw.service.TeamService; // Importa il servizio Team
 import it.uniroma3.siw.service.UserService;
 import jakarta.validation.Valid;
 
@@ -41,9 +45,13 @@ public class AuthenticationController {
     @Autowired
     private PresidentService presidentService;
 
+    @Autowired
+    private TeamService teamService; // Aggiungi il servizio Team
+
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("presidentRegistration", new PresidentRegistrationDTO());
+        model.addAttribute("teams", teamService.findAll()); // Aggiungi i team al modello
         return "formRegister";
     }
 
@@ -53,6 +61,7 @@ public class AuthenticationController {
                                Model model) {
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("teams", teamService.findAll()); // Rende di nuovo i team disponibili in caso di errore
             return "formRegister";
         }
 
@@ -78,6 +87,21 @@ public class AuthenticationController {
         president.setDateOfBirth(dto.getDateOfBirth());
         president.setPresidentCode(dto.getPresidentCode());
         president.setUsername(dto.getUsername());
+
+        // Associa il presidente al team selezionato
+        if (dto.getTeamId() != null) {
+            Optional<Team> optionalTeam = teamService.findById(dto.getTeamId());
+            if (optionalTeam.isPresent()) {
+                Team team = optionalTeam.get();
+                president.setTeam(team);
+            } else {
+                // Gestisci il caso in cui il team non esista
+                model.addAttribute("teamNotFound", true);
+                model.addAttribute("teams", teamService.findAll()); // Rende di nuovo i team disponibili in caso di errore
+                return "formRegister";
+            }
+        }
+
         presidentService.savePresident(president);
 
         // Associate credentials with the president and the user
@@ -87,6 +111,7 @@ public class AuthenticationController {
 
         return "registrationSuccessful";
     }
+
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {

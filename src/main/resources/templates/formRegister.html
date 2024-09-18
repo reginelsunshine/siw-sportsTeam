@@ -1,90 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Registrazione Presidente</title>
     <meta charset="UTF-8">
-    <title>Registrazione</title>
     <link rel="stylesheet" href="/css/stile.css" />
 </head>
 <body>
     <header>
-        <!-- Mostra nome utente e Logout se autenticato -->
         <div th:if="${userDetails}">
             <span th:text="${userDetails.username}"></span>
             <a href="/logout">Logout</a>
         </div>
-        
-        <!-- Mostra Login e Registrati se non autenticato -->
-        <div th:unless="${userDetails}" class="auth-links">
-            <a th:href="@{/login}" th:text="Login">Login</a>
-            <!-- <a th:href="@{/register}" th:text="Registrati">Registrati</a> -->
+        <div th:unless="${userDetails}">
+            <a href="/login">Login</a>
         </div>
     </header>
     <div class="logo-container">
-        <img src="/images/logo-siw.png" class="logo" />
+        <img src="/images/logo-siw.png" class="logo"/>
     </div>
-    <div class="page-content">
-        <h2>Registrazione Presidente</h2>
-    </div>
-    <div class="page-register">
-        <form action="#" th:action="@{/register}" th:object="${presidentRegistration}" method="post">
-            <div>
-                <label for="firstName">Nome:</label>
-                <input type="text" id="firstName" th:field="*{firstName}" required />
-                <div th:if="${#fields.hasErrors('firstName')}" class="error">
-                    <span th:errors="*{firstName}"></span>
-                </div>
-            </div>
+    <h1>Registra un nuovo presidente</h1>
+    <form action="#" th:action="@{/president/register}" th:object="${presidentRegistration}" method="post">
+        <!-- Campo per il nome del presidente -->
+        <div class="rounded-box">
+            <label for="firstName">Nome:</label>
+            <input type="text" id="firstName" th:field="*{firstName}" placeholder="Inserisci nome" required/>
+        </div>
 
-            <div>
-                <label for="lastName">Cognome:</label>
-                <input type="text" id="lastName" th:field="*{lastName}" required />
-                <div th:if="${#fields.hasErrors('lastName')}" class="error">
-                    <span th:errors="*{lastName}"></span>
-                </div>
-            </div>
-            
-            <div>
-                <label for="fiscalCode">Codice Fiscale:</label>
-                <input type="text" id="fiscalCode" th:field="*{fiscalCode}" required />
-                <div th:if="${#fields.hasErrors('fiscalCode')}" class="error">
-                    <span th:errors="*{fiscalCode}"></span>
-                </div>
-            </div>
+        <!-- Campo per il cognome del presidente -->
+        <div class="rounded-box">
+            <label for="lastName">Cognome:</label>
+            <input type="text" id="lastName" th:field="*{lastName}" placeholder="Inserisci cognome" required/>
+        </div>
 
-            <div>
-                <label for="dateOfBirth">Data di Nascita:</label>
-                <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required />
-                <div th:if="${#fields.hasErrors('dateOfBirth')}" class="error">
-                    <span th:errors="*{dateOfBirth}"></span>
-                </div>
-            </div>
+        <!-- Campo per il codice fiscale del presidente -->
+        <div class="rounded-box">
+            <label for="fiscalCode">Codice Fiscale:</label>
+            <input type="text" id="fiscalCode" th:field="*{fiscalCode}" placeholder="Inserisci codice fiscale" required/>
+        </div>
 
-            <div>
-                <label for="presidentCode">Codice Presidente:</label>
-                <input type="text" id="presidentCode" th:field="*{presidentCode}" required />
-                <div th:if="${#fields.hasErrors('presidentCode')}" class="error">
-                    <span th:errors="*{presidentCode}"></span>
-                </div>
-            </div>
+        <!-- Campo per la data di nascita del presidente -->
+        <div class="rounded-box">
+            <label for="dateOfBirth">Data di Nascita:</label>
+            <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required/>
+        </div>
 
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" th:field="*{username}" required />
-                <div th:if="${#fields.hasErrors('username')}" class="error">
-                    <span th:errors="*{username}"></span>
-                </div>
-            </div>
+        <!-- Campo per il codice del presidente -->
+        <div class="rounded-box">
+            <label for="presidentCode">Codice Presidente:</label>
+            <input type="text" id="presidentCode" th:field="*{presidentCode}" placeholder="Inserisci codice presidente" required/>
+        </div>
 
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" th:field="*{password}" required />
-                <div th:if="${#fields.hasErrors('password')}" class="error">
-                    <span th:errors="*{password}"></span>
-                </div>
-            </div>
+        <!-- Campo per il nome utente del presidente -->
+        <div class="rounded-box">
+            <label for="username">Username:</label>
+            <input type="text" id="username" th:field="*{username}" placeholder="Inserisci username" required/>
+        </div>
 
-            <button type="submit">Registrati</button>
-        </form>
-    </div>
+        <!-- Campo per la password del presidente -->
+        <div class="rounded-box">
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" placeholder="Inserisci password" required/>
+        </div>
+
+        <!-- Selezione della squadra -->
+        <div class="rounded-box">
+            <label for="teamId">Seleziona la tua Squadra:</label>
+            <select id="teamId" th:field="*{teamId}">
+                <option value="" disabled selected>Seleziona team</option>
+                <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
+            </select>
+        </div>
+
+        <!-- Pulsante di invio -->
+        <div class="rounded-box">
+            <button type="submit" class="btn-submit">Registra Presidente</button>
+        </div>
+    </form>
 </body>
 </html>

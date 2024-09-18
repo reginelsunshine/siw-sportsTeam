@@ -25,9 +25,7 @@ public class PresidentService {
         Optional<Credentials> credentials = credentialsService.findByUsername(username);
         return credentials.map(Credentials::getPresident);
     }
-    public void savePresident(President president) {
-        presidentRepository.save(president);
-    }
+
 
     public Optional<President> findByFiscalCodeAndPresidentCode(String fiscalCode, String presidentCode) {
         return presidentRepository.findByFiscalCodeAndPresidentCode(fiscalCode, presidentCode);
@@ -39,5 +37,9 @@ public class PresidentService {
     
     public Optional<President> findById(Long id) {
         return presidentRepository.findById(id);
+    }
+    
+    public void savePresident(President president) {
+        presidentRepository.save(president);
     }
 }

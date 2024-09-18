@@ -28,6 +28,9 @@ public class PresidentRegistrationDTO {
 
     @NotBlank
     private String password;
+    
+    @NotNull
+    private Long teamId;
 
     // Getters and Setters
     public String getFirstName() {
@@ -84,5 +87,13 @@ public class PresidentRegistrationDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public Long getTeamId() {
+        return teamId;  // Getter for teamId
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;  // Setter for teamId
     }
 }

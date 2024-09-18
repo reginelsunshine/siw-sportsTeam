@@ -9,14 +9,13 @@
     <header>
         <h1>Seleziona la squadra da eliminare</h1>
     </header>
-	<div class="logo-container">
-    <img src="/images/logo-siw.png" class="logo"/>
-</div>
-    <div class="container">
+    <div class="logo-container">
+        <img src="/images/logo-siw.png" class="logo"/>
+    </div>
+    <div class="rounded-box"> <!-- Applica la classe rounded-box -->
         <h1>Eliminazione Squadra</h1>
         <form action="/admin/deleteTeam" method="post">
             <div>
-               
                 <select id="teamId" name="teamId" required>
                     <option value="" disabled selected>Squadre</option>
                     <th:block th:each="team : ${teams}">
@@ -24,11 +23,11 @@
                     </th:block>
                 </select>
             </div>
-            <input type="submit" value="Elimina">
+            <input type="submit" value="Elimina" class="submit-button"> <!-- Applica la classe submit-button -->
         </form>  
     </div>
-        <div class="page-content">
-     <a class="cancel" href="/admin/indexTeams">Torna al Pannello di Amministrazione</a>
-     </div>
+    <div class="page-content">
+        <a class="cancel" href="/admin/indexTeams">Torna al Pannello di Amministrazione</a> <!-- Applica la classe cancel -->
+    </div>
 </body>
 </html>
